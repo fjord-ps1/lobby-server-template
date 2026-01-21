@@ -4,6 +4,7 @@ import { Server } from 'socket.io';
 import path from 'path';
 import { config } from './config/env';
 import { logger } from './utils/logger';
+import { setupSocket } from './realtime/socket';
 
 const app = express();
 const httpServer = createServer(app);
@@ -23,14 +24,8 @@ app.get('/health', (req, res) => {
   res.json({ status: 'ok', timestamp: Date.now() });
 });
 
-// Socket.IO connection handler (placeholder for now)
-io.on('connection', (socket) => {
-  logger.info('Player connected', { socketId: socket.id });
-  
-  socket.on('disconnect', () => {
-    logger.info('Player disconnected', { socketId: socket.id });
-  });
-});
+// Setup all socket handlers
+setupSocket(io);
 
 export const startServer = () => {
   httpServer.listen(config.port, () => {
