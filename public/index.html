@@ -1,1 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Lobby Server Demo</title>
+  <link rel="stylesheet" href="demo.css">
+</head>
+<body>
+  <div class="container">
+    <h1>Lobby Server Demo</h1>
+    
+    <!-- Connection Status -->
+    <div id="status" class="status disconnected">Disconnected</div>
 
+    <!-- Pre-Lobby: Name + Create/Join -->
+    <div id="pre-lobby">
+      <input type="text" id="playerName" placeholder="Your name" maxlength="30">
+      
+      <div class="section">
+        <h3>Create Lobby</h3>
+        <input type="text" id="lobbyName" placeholder="Lobby name" maxlength="50">
+        <button id="createBtn">Create</button>
+      </div>
+
+      <div class="section">
+        <h3>Join Lobby</h3>
+        <input type="text" id="joinCode" placeholder="ABCD-1234" maxlength="9">
+        <button id="joinBtn">Join</button>
+      </div>
+    </div>
+
+    <!-- In-Lobby View -->
+    <div id="in-lobby" class="hidden">
+      <div class="lobby-header">
+        <h2 id="lobbyTitle">Lobby</h2>
+        <div class="lobby-code">Code: <span id="lobbyCode">-</span></div>
+      </div>
+
+      <div class="players">
+        <h3>Players</h3>
+        <ul id="playerList"></ul>
+      </div>
+
+      <div class="actions">
+        <button id="leaveBtn">Leave</button>
+        <button id="startBtn" class="hidden">Start Game</button>
+      </div>
+    </div>
+
+    <!-- Log -->
+    <div class="log">
+      <h3>Log</h3>
+      <div id="logList"></div>
+    </div>
+  </div>
+
+  <script src="https://cdn.socket.io/4.7.4/socket.io.min.js"></script>
+  <script src="demo.js"></script>
+</body>
+</html>
